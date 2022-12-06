@@ -1,4 +1,7 @@
-import { userServiceCreate } from "../services/User.services.js";
+import {
+  userServiceCreate,
+  userServiceDelete,
+} from "../services/User.services.js";
 
 const create = async (req, res) => {
   try {
@@ -21,4 +24,24 @@ const create = async (req, res) => {
   }
 };
 
-export default { create };
+const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).send({ message: "User not found" });
+    }
+
+    const userDeleted = await userServiceDelete(id);
+
+    if (!userDeleted) {
+      return res.status(400).send({ message: "User not found" });
+    }
+
+    return res.send({ message: "User deleted sucessfuly" });
+  } catch (err) {
+    return res.status(400).send({ message: err.message });
+  }
+};
+
+export default { create, deleteUser };

@@ -21,7 +21,7 @@ const login = async (req, res) => {
       return res.status(400).send({ message: "Usuario/Senha está errado" });
     }
 
-    const token = AuthServices.generateToken(user._i);
+    const token = AuthServices.generateToken(user._id);
 
     return res.send({ token });
   } catch (err) {
