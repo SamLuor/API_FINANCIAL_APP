@@ -3,6 +3,7 @@ import {
   expensiveServiceAllById,
   expenseServiceFindIdUpdate,
   expenseServiceDelete,
+  findAllExpensive,
 } from "../services/Expense.services.js";
 
 const fields = [
@@ -44,9 +45,25 @@ const create = async (req, res) => {
   }
 };
 
-const findAllById = async (req, res) => {
+const findAllExpensives = async (req, res) => {
   try {
     const userId = req.userId;
+    // const limit = 40;
+    // const offset = 0;
+
+    // const expenses = await findAllExpensive(limit, offset);
+    // const total = await countNews();
+    // const currentUrl = req.baseUrl;
+
+    // const next = offset + limit;
+    // const nextUrl =
+    //   next < total ? `${currentUrl}?limit=${limit}&offset=${next}` : null;
+
+    // const previous = offset - limit < 0 ? null : offset - limit;
+    // const previousUrl =
+    //   previous != null
+    //     ? `${currentUrl}?limit=${limit}&offset=${previous}`
+    //     : null;
 
     const expenses = await expensiveServiceAllById(userId);
 
@@ -109,4 +126,4 @@ const deleteById = async (req, res) => {
   }
 };
 
-export default { create, findAllById, update, deleteById };
+export default { create, findAllExpensives, update, deleteById };

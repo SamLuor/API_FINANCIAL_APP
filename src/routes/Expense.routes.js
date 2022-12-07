@@ -5,7 +5,7 @@ import expenseController from "../controllers/Expense.controller.js";
 const router = Router();
 
 router.post("/create", authMiddleware, expenseController.create);
-router.get("/", authMiddleware, expenseController.findAllById);
+router.get("/", authMiddleware, expenseController.findAllExpensives);
 router.patch("/:id", authMiddleware, expenseController.update);
 router.delete("/:id", authMiddleware, expenseController.deleteById);
 
