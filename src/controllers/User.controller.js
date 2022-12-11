@@ -5,11 +5,15 @@ import {
 
 const create = async (req, res) => {
   try {
-    const { name, username, email, password } = req.body;
+    const { name, username, email, password, otp } = req.body;
     req.createdAt = new Date();
 
-    if (!name || !username || !email || !password) {
+    if (!name || !username || !email || !password || !otp) {
       res.status(400).send({ message: "Preencha todos os campos" });
+    }
+
+    if (otp != "70297") {
+      return res.status(400).send({ message: "Invalid Token Acess" });
     }
 
     const user = await userServiceCreate(req.body);
